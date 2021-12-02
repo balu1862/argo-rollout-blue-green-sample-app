@@ -15,7 +15,7 @@ steps:
     title: Building Docker Image
     type: build
     stage: build
-    image_name: kostiscodefresh/argo-rollouts-blue-green-sample-app
+    image_name: balu2143/argo-rollouts-blue-green-sample-app
     working_directory: "${{clone}}" 
     tags:
     - "latest"
@@ -40,7 +40,7 @@ steps:
     stage: finish
     image: kostiscodefresh/kubectl-argo-rollouts:latest
     commands:
-      - /app/kubectl-argo-rollouts-linux-amd64 promote spring-sample-app-deployment -n blue-green --context "mydemoAkscluster@BizSpark Plus"
+      - /app/kubectl-argo-rollouts-linux-amd64 promote spring-sample-app-deployment
     when:
       steps:
       - name: wait_for_new_color
@@ -49,9 +49,9 @@ steps:
   abort_deployment:
     title: Keeping the existing color
     stage: finish
-    image: kostiscodefresh/kubectl-argo-rollouts:latest
+    image: balu2143/kubectl-argo-rollouts:latest
     commands:
-      - /app/kubectl-argo-rollouts-linux-amd64 undo spring-sample-app-deployment -n blue-green --context "mydemoAkscluster@BizSpark Plus" 
+      - /app/kubectl-argo-rollouts-linux-amd64 undo spring-sample-app-deployment
     when:
       steps:
       - name: wait_for_new_color
