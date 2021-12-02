@@ -30,9 +30,6 @@ steps:
       - /cf-deploy-kubernetes ./blue-green-manual-approval/service.yaml 
       - /cf-deploy-kubernetes ./blue-green-manual-approval/service-preview.yaml   
       - /cf-deploy-kubernetes ./blue-green-manual-approval/rollout.yaml   
-    environment:
-      - KUBECONTEXT=mydemoAkscluster@BizSpark Plus
-      - KUBERNETES_NAMESPACE=blue-green 
   wait_for_new_color:
     fail_fast: false
     type: pending-approval
